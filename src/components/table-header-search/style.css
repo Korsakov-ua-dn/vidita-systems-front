@@ -1,0 +1,10 @@
+.Table__search {
+    height: 80%;
+    border: 2px solid #b7b7b7;
+    border-radius: 4px;
+    padding: 5px;
+}
+.Table__search:focus {
+    border: 2px solid #0098fd;
+    outline: none;
+}

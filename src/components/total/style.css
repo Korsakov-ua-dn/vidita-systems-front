@@ -1,0 +1,11 @@
+.Total {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 50%;
+    flex-direction: row;
+}
+
+.Total__item {
+    height: 50px;
+}

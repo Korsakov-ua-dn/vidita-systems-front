@@ -1,0 +1,16 @@
+.Article__item_header {
+    height: 100%;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    border: 2px solid #ffffff;
+    border-radius: 4px;
+    justify-content: center;
+    cursor: pointer;
+}
+.Article__item_header.Article__item_total {
+    cursor: auto;
+}
+.Article__item_active {
+    background-color: rgb(170, 221, 255);
+}
