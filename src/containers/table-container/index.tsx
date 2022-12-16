@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useMemo, useRef, MouseEvent, ChangeEvent } from "react";
+import React, { useCallback, useState, useMemo, useRef, useEffect, MouseEvent, ChangeEvent } from "react";
 import { ArticleType } from "../../api";
 import ArticleItem from "../../components/article-item";
 import Table from "../../components/table";
@@ -71,6 +71,15 @@ const TableContainer: React.FC = () => {
         setSearch(null)
       }
     }, [search?.field]),
+
+    onResize: useCallback(() => {
+      if (tableRef.current) {
+
+        let maxHeight = window.innerHeight - tableRef.current.offsetTop * 2
+        tableRef.current.style.maxHeight = `${maxHeight}px`;
+
+      }
+    }, [])
   
   };
 
@@ -84,6 +93,14 @@ const TableContainer: React.FC = () => {
       />
     ), [select.selected, callbacks.onSelect]),
   }
+
+  useEffect(() => {
+    callbacks.onResize();
+    window.addEventListener("resize", callbacks.onResize)
+    return () => {
+      window.removeEventListener("resize", callbacks.onResize)
+    }
+  })
 
   return (
     <>

@@ -3,8 +3,11 @@
     border: 2px solid #b7b7b7;
     border-radius: 4px;
     padding: 5px;
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 16px;
 }
 .Table__search:focus {
-    border: 2px solid #0098fd;
+    border: 2px solid #007FFF;
     outline: none;
 }

@@ -55,7 +55,7 @@ const Table = React.forwardRef((props: PropsType, ref: ForwardedRef<HTMLUListEle
       </li>
 
       <li className="Table__item Article">
-        <span className="Article__item"></span>
+        <span className="Article__item">&nbsp;</span>
         
         {options.headerColumn.map(col => (
           <TableHeaderSearch
@@ -67,7 +67,7 @@ const Table = React.forwardRef((props: PropsType, ref: ForwardedRef<HTMLUListEle
           />
         ))}
 
-        <span className="Article__item"></span>
+        <span className="Article__item">&nbsp;</span>
       </li>
 
       {props.items.map((item) => props.renderFunc(item))}

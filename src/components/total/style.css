@@ -1,11 +1,21 @@
-.Total {
+div.Total {
     position: fixed;
     bottom: 24px;
     right: 24px;
-    width: 50%;
+    left: 24px;
+    top: auto;
     flex-direction: row;
+    justify-content: space-evenly;
+    gap: 20px;
+    overflow-y: auto;
+    width: auto;
+    padding: 0 20px;
 }
 
 .Total__item {
     height: 50px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
 }

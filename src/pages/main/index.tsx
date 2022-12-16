@@ -17,7 +17,7 @@ const Main:React.FC = () => {
     <Layout>
       <Title title="Таблица"/>
       <TableContainer/>
-      {/* <Footer/> */}
+      <Footer/>
     </Layout>
   );
 };

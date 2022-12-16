@@ -12,5 +12,6 @@
     cursor: auto;
 }
 .Article__item_active {
-    background-color: rgb(170, 221, 255);
+    background-color: #007FFF;
+    color: #ffffff
 }
