@@ -16,7 +16,7 @@ const Total: React.FC<PropsType> = (props) => (
         <span className="Total__item">Общий обьем: {props.totalVolume}</span>
         <span className="Total__item">Общее количество: {props.totalQty}</span>
         <span className="Total__item">
-          <Button onClick={props.openDialog} variant="outlined">
+          <Button disabled={!props.totalVolume && !props.totalQty} onClick={props.openDialog} variant="outlined">
             Аннулировать
           </Button>
         </span>
