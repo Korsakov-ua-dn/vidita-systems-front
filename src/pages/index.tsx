@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import PopupsManager from "../containers/popups-manager";
 import Main from "./main";
 
 const App = () => {
@@ -9,7 +10,7 @@ const App = () => {
         <Route path={""} element={<Main />} />
       </Routes>
 
-      {/* <PopupsManager /> */}
+      <PopupsManager />
     </>
   );
 };

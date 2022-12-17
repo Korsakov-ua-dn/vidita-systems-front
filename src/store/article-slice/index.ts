@@ -1,28 +1,39 @@
 import { createSlice, createAsyncThunk, AnyAction, PayloadAction } from "@reduxjs/toolkit";
 import { articleApi, ArticleType } from "../../api";
+import { RootState } from "../";
 
 // thunk
 export const fetchAllDocuments = createAsyncThunk<ArticleType[], undefined, { rejectValue: string }>
-  ("activity/GET_ALL", async (_, { rejectWithValue }) => {
+  ("articles/GET_ALL", async (_, { rejectWithValue }) => {
     try {
-
       const res = Promise.all([
         articleApi.getAll("documents1"), 
         articleApi.getAll("documents2")
       ]);
+
       let data = (await res).flatMap(axiosResponce => axiosResponce.data);
       // сортировка по умолчанию => delivery_date
       data.sort((a, b) => new Date(a.delivery_date).getTime() - new Date(b.delivery_date).getTime())
-      // data.sort((a, b) => a.qty - b.qty)
       return data;
 
     } catch (err) {
-
       return rejectWithValue("Some error occured, please try again");
-
     }
-});
+  });
 
+export const fetchCancel = createAsyncThunk<any, undefined, { rejectValue: string, state: RootState  }>
+  ("articles/CANCEL", async (_, { rejectWithValue, getState }) => {
+    try {
+      
+      const selected = getState().article.selected;
+      const payload = selected.map(item => item._id);
+      const response = await articleApi.cancel(payload);
+      return await response.data;
+
+    } catch (err) {
+      return rejectWithValue("Some error occured, please try again");
+    }
+  });
 
 // slice
 const initialState: ArticleStateType = {
@@ -33,8 +44,8 @@ const initialState: ArticleStateType = {
   error: null,
 }
 
-const activitySlice = createSlice({
-  name: "activity/GET_ONE",
+const articlesSlice = createSlice({
+  name: "articles",
   initialState,
   reducers: {
     setSort(state, action) {
@@ -70,8 +81,8 @@ const activitySlice = createSlice({
   },
 });
 
-export const actions = activitySlice.actions
-export default activitySlice.reducer;
+export const articlesActions = articlesSlice.actions
+export default articlesSlice.reducer;
 
 function isError(action: AnyAction) {
   return action.type.endsWith('rejected');

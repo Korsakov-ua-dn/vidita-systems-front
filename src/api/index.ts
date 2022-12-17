@@ -8,6 +8,9 @@ export const articleApi = {
   getAll(document: string) {
     return instance.get(`/api/${document}`);
   },
+  cancel(payload: string[]) {
+    return instance.post(`/api/cancel`, payload);
+  },
 };
 
 // types

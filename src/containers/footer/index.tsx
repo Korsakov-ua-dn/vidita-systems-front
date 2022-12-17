@@ -1,9 +1,11 @@
-import React, { useCallback, useLayoutEffect, useState, useMemo, MouseEvent, ChangeEvent } from "react";
+import React, { useCallback, useMemo, MouseEvent } from "react";
 import Total from "../../components/total";
+import { POPUPS } from "../../const";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { actions } from "../../store/article-slice";
+import { articlesActions, fetchCancel } from "../../store/article-slice";
+import { popupsActions } from "../../store/popups-slice";
 
-const Footer: React.FC = () => {
+const Footer:React.FC = () => {
   const dispatch = useAppDispatch();
 
   const select = useAppSelector((state) => ({
@@ -15,8 +17,26 @@ const Footer: React.FC = () => {
   const callbacks = {
     onСancel: useCallback((e: MouseEvent<HTMLSpanElement>) => {
       const searchParam = (e.currentTarget.getAttribute('data-key'))
-      dispatch(actions.setSort(searchParam))
+      dispatch(articlesActions.setSort(searchParam))
     }, [dispatch]),
+
+    openDialog: useCallback(() => {
+      const dialogTitle = "Вы уверены что хотите аннулировать товар(ы): "
+      const dialogContentText = select.selected.reduce(
+        (acc, cur, i) => acc + (i === select.selected.length - 1 ? `${cur.name}.` : `${cur.name}, `)
+      , '')
+      // Создаем объект модального окна
+      const popupObj = {
+        name: POPUPS.AlertPopup, 
+        dialogTitle,
+        dialogContentText,
+        onClose: (isAgree: boolean) => {
+          dispatch(popupsActions.close(popupObj))
+          isAgree && dispatch(fetchCancel())
+        },
+      }
+      dispatch(popupsActions.open(popupObj))
+    }, [dispatch, select.selected]),
   
   };
 
@@ -35,7 +55,11 @@ const Footer: React.FC = () => {
 
   if (select.loading || select.error) return null;
 
-  return <Total totalVolume={total.volume} totalQty={total.qty}/>
+  return <Total 
+            totalVolume={total.volume} 
+            totalQty={total.qty} 
+            openDialog={callbacks.openDialog}
+          />
 };
 
 export default React.memo(Footer);  

@@ -44,9 +44,11 @@ const ArticleItem: React.FC<PropsType> = (props) => {
         {props.item.currency}
       </span>
       <span className="Article__item Article__item_total">
-        {numberFormat(props.item.sum * props.item.qty) +
+        {
+          numberFormat(props.item.sum * props.item.qty) +
           " " +
-          props.item.currency}
+          props.item.currency
+        }
       </span>
     </li>
   );

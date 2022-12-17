@@ -1,3 +1,3 @@
 export enum POPUPS {
-  ROOM = "room",
+  AlertPopup = "alert",
 }
