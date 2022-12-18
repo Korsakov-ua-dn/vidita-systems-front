@@ -17,7 +17,7 @@ const TableContainer: React.FC = () => {
     error: state.article.error,
   }));
 
-  const tableRef = useRef<HTMLUListElement>(null);
+  const tableRef = useRef<HTMLDivElement>(null);
   const [search, setSearch] = useState<SearchType>(null);
 
   const callbacks = {

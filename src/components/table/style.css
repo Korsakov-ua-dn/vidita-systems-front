@@ -5,23 +5,25 @@
     border-radius: 4px;
     background-color: #ffffff;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+.Table__wrapper {
     overflow-y: scroll;
 }
-.Table::-webkit-scrollbar{
+.Table__wrapper::-webkit-scrollbar{
     position: fixed;
     width: 8px;
   }
-.Table::-webkit-scrollbar-track{
+.Table__wrapper::-webkit-scrollbar-track{
     position: fixed;
     background: #ffffff;
     border-radius: 4px;
 }
-.Table::-webkit-scrollbar-thumb{
+.Table__wrapper::-webkit-scrollbar-thumb{
     position: fixed;
     background: #e5e6e9;
     border-radius: 4px;
 }
-.Table::-webkit-scrollbar-thumb:hover{
+.Table__wrapper::-webkit-scrollbar-thumb:hover{
     background: #b3b3b3;
 }
 .Table__item {

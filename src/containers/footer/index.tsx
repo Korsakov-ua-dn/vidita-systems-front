@@ -13,7 +13,7 @@ const Footer:React.FC = () => {
     loading: state.article.loading,
     error: state.article.error,
   }));
-
+  
   const callbacks = {
     onСancel: useCallback((e: MouseEvent<HTMLSpanElement>) => {
       const searchParam = (e.currentTarget.getAttribute('data-key'))
