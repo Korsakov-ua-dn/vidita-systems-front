@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../layout";
 import "./style.css";
-import Button from '@mui/material/Button';
+import CustomButton from "../button"
 
 type PropsType = {
   totalVolume: number;
@@ -16,9 +16,9 @@ const Total: React.FC<PropsType> = (props) => (
         <span className="Total__item">Общий обьем: {props.totalVolume}</span>
         <span className="Total__item">Общее количество: {props.totalQty}</span>
         <span className="Total__item">
-          <Button disabled={!props.totalVolume && !props.totalQty} onClick={props.openDialog} variant="outlined">
+          <CustomButton disabled={!props.totalVolume && !props.totalQty} onClick={props.openDialog}>
             Аннулировать
-          </Button>
+          </CustomButton>
         </span>
       </div>
     </Layout>
