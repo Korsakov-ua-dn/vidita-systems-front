@@ -3,7 +3,7 @@ import { ArticleType } from "../../api";
 import ArticleItem from "../../components/article-item";
 import Table from "../../components/table";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { articlesActions } from "../../store/article-slice";
+import { articlesActions, SortType } from "../../store/article-slice";
 import { sortByKey } from "../../utils/sort-by-key";
 
 const TableContainer: React.FC = () => {
@@ -38,7 +38,7 @@ const TableContainer: React.FC = () => {
     }, [dispatch]),
 
     onSort: useCallback((e: MouseEvent<HTMLSpanElement>) => {
-      const searchParam = (e.currentTarget.getAttribute('data-key'))
+      const searchParam = (e.currentTarget.getAttribute('data-key')) as SortType;
       dispatch(articlesActions.setSort(searchParam))
     }, [dispatch]),
 

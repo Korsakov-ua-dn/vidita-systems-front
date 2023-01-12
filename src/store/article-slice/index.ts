@@ -48,13 +48,13 @@ const articlesSlice = createSlice({
   name: "articles",
   initialState,
   reducers: {
-    setSort(state, action) {
+    setSort(state, action: PayloadAction<SortType>) {
       state.sort = action.payload
     },
-    addArticle(state, action) {
+    addArticle(state, action: PayloadAction<ArticleType>) {
       state.selected.push(action.payload)
     },
-    removeArticle(state, action) {
+    removeArticle(state, action: PayloadAction<ArticleType>) {
       state.selected = state.selected.filter(item => item._id !== action.payload._id)
     },
     addAll(state) {
@@ -90,11 +90,11 @@ function isError(action: AnyAction) {
 
 // types
 type ArticleStateType = {
-  data: ArticleType[]
-  selected: ArticleType[]
-  sort: SortType
-  loading: boolean
-  error: string | null
+  data: ArticleType[];
+  selected: ArticleType[];
+  sort: SortType;
+  loading: boolean;
+  error: string | null;
 }
 
-export type SortType = "delivery_date" | "currency" | "name" | "volume" | "qty" | "sum" | "status"
+export type SortType = "delivery_date" | "currency" | "name" | "volume" | "qty" | "sum" | "status";

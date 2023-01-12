@@ -1,8 +1,8 @@
-import React, { useCallback, useMemo, MouseEvent } from "react";
+import React, { useCallback, useMemo } from "react";
 import Total from "../../components/total";
 import { POPUPS } from "../../const";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { articlesActions, fetchCancel } from "../../store/article-slice";
+import { fetchCancel } from "../../store/article-slice";
 import { popupsActions } from "../../store/popups-slice";
 
 const Footer:React.FC = () => {
@@ -15,11 +15,6 @@ const Footer:React.FC = () => {
   }));
   
   const callbacks = {
-    onСancel: useCallback((e: MouseEvent<HTMLSpanElement>) => {
-      const searchParam = (e.currentTarget.getAttribute('data-key'))
-      dispatch(articlesActions.setSort(searchParam))
-    }, [dispatch]),
-
     openDialog: useCallback(() => {
       const dialogTitle = "Вы уверены что хотите аннулировать товар(ы): "
       const dialogContentText = select.selected.reduce(
@@ -27,12 +22,12 @@ const Footer:React.FC = () => {
       , '')
       // Создаем объект модального окна
       const popupObj = {
-        name: POPUPS.AlertPopup, 
+        name: POPUPS.AlertPopup,
         dialogTitle,
         dialogContentText,
-        onClose: (isAgree: boolean) => {
+        onClose: (result: boolean) => {
           dispatch(popupsActions.close(popupObj))
-          isAgree && dispatch(fetchCancel())
+          result && dispatch(fetchCancel())
         },
       }
       dispatch(popupsActions.open(popupObj))

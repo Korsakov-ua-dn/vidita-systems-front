@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PopupsNameType } from "../../containers/popups-manager";
 
 // slice
@@ -10,10 +10,10 @@ const popupsSlice = createSlice({
   name: "popups",
   initialState,
   reducers: {
-    open(state, action) {
+    open(state, action: PayloadAction<CommonPopupType>) {
       state.mountedPopups.push(action.payload)
     },
-    close(state, action) {
+    close(state, action: PayloadAction<CommonPopupType>) {
       state.mountedPopups = state.mountedPopups.filter(popup => popup === action.payload)
     },
     closeAll(state) {
@@ -34,7 +34,7 @@ type PopupsStateType = {
 
 type RequiredPopupType = {
   name: PopupsNameType;
-  onClose: () => void;
+  onClose: (result: any) => void;
 };
 
 type OptionalPopupType = {
@@ -42,3 +42,4 @@ type OptionalPopupType = {
 };
 
 export type CommonPopupType = RequiredPopupType & OptionalPopupType;
+// export type CommonPopupType = RequiredPopupType & Record<string, any>;
